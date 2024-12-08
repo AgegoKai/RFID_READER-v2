@@ -9,7 +9,6 @@ Zmień API_HOST na nowe IP lub adres URL serwera, na który chcesz wysyłać dan
 ```
 API_HOST = 'http://10.10.0.72:8180'
 API_ENDPOINT = '/card/'
-Zmień API_HOST na nowe IP lub adres URL serwera, na który chcesz wysyłać dane:
 API_HOST = 'http://192.168.0.100:8180'
 ```
 Jeśli endpoint serwera się zmienił, zaktualizuj API_ENDPOINT:
