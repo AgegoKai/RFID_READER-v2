@@ -8,7 +8,7 @@ import threading
 
 # Server configuration
 API_HOST = 'http://10.10.0.72:8180'
-API_ENDPOINT = '/card/'
+API_ENDPOINT = '/api/v1/check_event/add_event_card'
 
 # Database configuration
 DATABASE_FILE = 'rfid_data.db'
@@ -105,16 +105,19 @@ def retry_unsent_data():
 def send_rfid_data(card_id, timestamp):
     """Send RFID data to the server."""
     try:
-        url = f"{API_HOST}{API_ENDPOINT}{card_id}"
-        data = {"datetime": timestamp}
+        url = f"{API_HOST}{API_ENDPOINT}"
+        data = {
+            "CardId": card_id,
+            "DateTime": timestamp
+        }
         response = requests.post(url, json=data, timeout=5)
         if response.status_code == 200:
-            print(f"Data successfully sent for card number: {card_id}")
+            print(f"Data successfully sent for Card ID: {card_id}")
             mark_rfid_as_sent(card_id, timestamp)
         else:
-            print(f"Failed to send data for card number: {card_id}, Status Code: {response.status_code}")
+            print(f"Failed to send data for Card ID: {card_id}, Status Code: {response.status_code}")
     except Exception as e:
-        print(f"Error sending data for card number {card_id}: {e}")
+        print(f"Error sending data for Card ID {card_id}: {e}")
 
 # Main function
 def main():
